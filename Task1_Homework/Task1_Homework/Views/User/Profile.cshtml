@@ -1,0 +1,42 @@
+﻿@model UserViewModel
+
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = Localizer["Profile"];
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h1 class="loginpagetext buytext">@Model.UserName's @Localizer["Profile"]</h1>
+    <hr />
+    <div class="row">
+       
+        <div id="template">
+            <div id="picture ">
+                <img src="~/img/@Model.Avatar" width="230" height="330" vspace="50" hspace="30" class="picturebord" />
+            </div>
+            <div class="content">
+                <div id="header">
+                    <h3 align="center">Functions</h3>
+                </div>
+                <div class="sda ">
+                    @Html.ActionLink("My sales requests", "SalesRequests", "Order", new { }, new { @class = " btnprof btnsmarg btnmarg" })
+                    @Html.ActionLink("My Tickets", "UserTickets", "Ticket", new { }, new { @class = " btnprof  btnsmarg btnmarg" })
+                    @Html.ActionLink("My Orders", "MyOrders", "Order", new { }, new { @class = " btnprof btnsmarg btnmarg" })
+                    @Html.ActionLink("ChangeAvatar", "ChangeAvatar", "User", new { id = Model.Id }, new { @class = " btnmarg btnsmarg btnprof compItem" })
+                    @Html.ActionLink("Edit Profile", "ManageProfile", "User", new { }, new { @class = " btnprof  btnsmarg btnmarg" })
+                </div>
+                <div class="dateev">
+
+                </div>
+                <div>
+                </div>
+            </div>
+            <div id="modDialog" class="modal fade">
+                <div id="dialogContent" class="modal-dialog"></div>
+            </div>
+        </div>
+    </div>
+    }
+
